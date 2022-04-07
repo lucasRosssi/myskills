@@ -1,6 +1,12 @@
+import { expect } from 'detox';
+
 describe('Meus primeiros testes', () => {
 	beforeAll(async () => {
 		await device.launchApp();
+	});
+
+	beforeEach(async () => {
+		await device.reloadReactNative();
 	});
 
 	it('should have welcome screen', async () => {
@@ -8,9 +14,9 @@ describe('Meus primeiros testes', () => {
 	});
 
 	it('should register new skill', async () => {
-		const inputNewSkill = await element(by.id('input-new'));
-		const buttonAdd = await element(by.id('button-add'));
-		const skillCard = await element(by.id('skill-card'));
+		const inputNewSkill = element(by.id('input-new'));
+		const buttonAdd = element(by.id('button-add'));
+		const skillCard = element(by.id('skill-card'));
 
 		await inputNewSkill.tap();
 		await inputNewSkill.typeText('React Native');
@@ -20,10 +26,10 @@ describe('Meus primeiros testes', () => {
 	});
 
 	it('should delete skill card', async () => {
-		const skillCard = await element(by.id('skill-card'));
+		const skillCard = element(by.id('skill-card'));
 
 		await skillCard.longPress();
 
-		expect(skillCard).not.toBeVisible();
+		await expect(skillCard).not.toExist();
 	});
 });

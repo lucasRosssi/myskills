@@ -1,0 +1,19 @@
+{
+	"testRunner": "jest",
+	"runnerConfig": "e2e/config.json",
+	"configurations": {
+		"session": {
+			"server": "ws://localhost:8099",
+			"sessionId": "MySkillsSession",
+			"debugSynchronization": 5000
+		},
+		"android.emu.debug": {
+			"type": "android.emulator",
+			"binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+			"build": "cd android && gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..",
+			"device": {
+				"avdName": "Cyborg"
+			}
+		}
+	}
+}
